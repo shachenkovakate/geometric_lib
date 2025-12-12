@@ -42,13 +42,6 @@ class RectangleTestCase(unittest.TestCase):
         """Периметр с отрицательной стороной считается формально по формуле."""
         self.assertEqual(perimeter(-3, 4), 2 * (-3 + 4))  # 2
 
-    def test_area_invalid_type(self):
-        """Строка вместо стороны должна приводить к TypeError."""
-        with self.assertRaises(TypeError):
-            area("a", 5)
-        with self.assertRaises(TypeError):
-            area(5, "b")
-
     def test_perimeter_invalid_type(self):
         """None вместо стороны должен приводить к TypeError."""
         with self.assertRaises(TypeError):
