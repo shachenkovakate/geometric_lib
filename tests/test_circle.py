@@ -37,6 +37,28 @@ class CircleTestCase(unittest.TestCase):
         expected = 2 * math.pi * r
         self.assertAlmostEqual(perimeter(r), expected, places=7)
 
+    def test_area_negative_radius(self):
+        """При отрицательном радиусе формула всё равно даёт положительную площадь."""
+        r = -3
+        expected = math.pi * r * r  # r*r > 0
+        self.assertAlmostEqual(area(r), expected, places=7)
+
+    def test_perimeter_negative_radius(self):
+        """При отрицательном радиусе длина окружности получается отрицательной."""
+        r = -3
+        expected = 2 * math.pi * r  # < 0
+        self.assertAlmostEqual(perimeter(r), expected, places=7)
+
+    def test_area_invalid_type(self):
+        """Строка вместо радиуса должна приводить к TypeError."""
+        with self.assertRaises(TypeError):
+            area("not a radius")
+
+    def test_perimeter_invalid_type(self):
+        """None вместо радиуса должен приводить к TypeError."""
+        with self.assertRaises(TypeError):
+            perimeter(None)
+
 
 if __name__ == "__main__":
     unittest.main()

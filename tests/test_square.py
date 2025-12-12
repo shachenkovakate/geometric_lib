@@ -28,6 +28,24 @@ class SquareTestCase(unittest.TestCase):
         """Периметр квадрата с дробной стороной."""
         self.assertAlmostEqual(perimeter(2.5), 10.0, places=7)
 
+    def test_area_negative_side(self):
+        """Отрицательная сторона: площадь остаётся положительной (a * a)."""
+        self.assertEqual(area(-2), 4)
+
+    def test_perimeter_negative_side(self):
+        """Отрицательная сторона: периметр становится отрицательным."""
+        self.assertEqual(perimeter(-2), -8)
+
+    def test_area_invalid_type(self):
+        """Строка вместо стороны должна приводить к TypeError."""
+        with self.assertRaises(TypeError):
+            area("side")
+
+    def test_perimeter_invalid_type(self):
+        """None вместо стороны должен приводить к TypeError."""
+        with self.assertRaises(TypeError):
+            perimeter(None)
+
 
 if __name__ == "__main__":
     unittest.main()
